@@ -9,7 +9,7 @@ void PureWaifu::sendNotification()
 PureWaifu::PureWaifu()
 {
     terminal = true;
-    notification = true;
+    notification = false;
     icon = _icons[0];
     message = "";
 
@@ -65,8 +65,10 @@ void PureWaifu::setMode(const string &m)
 
     if (m == "terminal")
         notification = false;
-    else if (m == "notification")
+    else if (m == "notification" && !notification)
         notification = true;
+    else if (m == "notification" && notification)
+        std::cerr << "[notification] mode is already set" << std::endl;
     else
         std::cerr << "ERROR: [" << m << "] mode is unknown" << std::endl;
 
