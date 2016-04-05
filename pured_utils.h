@@ -30,18 +30,21 @@ class PureWaifu {
         PureWaifu();
 
         /* mood:
-         * { "happy",    "annoyed",
-         *   "confused", "surprised" } */
+         *  "happy",    "annoyed",
+         *  "confused", "surprised"
+         */
         void setMood(const string &mood);
 
         /* mode:
-         * { "terminal"       // talks through the terminal only
-         *   "notification" } // talks using both terminal and notifications */
+         *  "terminal"
+         *  "notification"
+         */
         void setMode(const string &mode);
 
         /* msg:
-         * { "welcome", "error"
-         *   "oh", "scared" } */
+         *  "welcome", "error"
+         *  "oh", "scared"
+         */
         void say(const string &msg);
 
         void version();
