@@ -1,5 +1,9 @@
+# test makefile
+makefile
+
 # compiled object files
 *.o
 
 # executables
 *.out
+test

@@ -1,6 +1,6 @@
 /*
  * My personal assistant waifu
- * */
+ */
 #include "pured_utils.h"
 
 int main()
