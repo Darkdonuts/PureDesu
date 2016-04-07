@@ -7,10 +7,12 @@
 
 #include <iostream>
 #include <unordered_map>
+#include <set>
 
 using std::string;
 using std::unordered_map;
 using std::make_pair;
+using std::set;
 
 static const string icon_path       = "~/dev/PureDesu/icons/";
 static const string waifu_name      = "PureDesu@Awaii";
@@ -31,26 +33,20 @@ class PureWaifu {
         void sendNotification();
     public:
         PureWaifu();
-
-        /* mood:
-         *  "happy",    "annoyed",
-         *  "confused", "surprised"
-         */
         void setMood(const string &mood);
-
-        /* mode:
-         *  "terminal"
-         *  "notification"
-         */
         void setMode(const string &mode);
-
-        /* msg:
-         *  "welcome", "error"
-         *  "oh", "scared"
-         */
         void say(const string &msg);
-
         void version();
+};
+
+class GenreObject {
+    private:
+        set<string> genres;
+    public:
+        const set<string>& get() const;
+        bool find(const string &genre) const;
+        void add(const string &genre);
+        void remove(const string &genre);
 };
 
 #endif
