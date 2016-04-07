@@ -1,4 +1,5 @@
 #include "pured_utils.h"
+#define NDEBUG
 
 void PureWaifu::sendNotification()
 {
@@ -10,7 +11,7 @@ PureWaifu::PureWaifu()
 {
     terminal = true;
     notification = false;
-    icon = _icons[0];
+    icon = _ICON.at("happy");
     message = "";
 
 #define FICON
@@ -20,33 +21,29 @@ PureWaifu::PureWaifu()
 #endif
 }
 
-const string PureWaifu::_icons[] = {
-    "happy.png",
-    "annoyed.png",
-    "confused.png",
-    "surprised.png",
+const unordered_map<string, string> PureWaifu::_ICON {
+    make_pair("happy",     "happy.png"),
+    make_pair("annoyed",   "annoyed.png"),
+    make_pair("confused",  "confused.png"),
+    make_pair("surprised", "surprised.png")
 };
 
-const string PureWaifu::_messages[] = {
-    "Welcome back, " + master_name + "!",
-    "ERROR!",
-    "Ooooh",
-    "That scared me, " + master_name + "..."
+const unordered_map<string, string> PureWaifu::_MESSAGE {
+    make_pair("welcome", "Welcome back, " + master_name + "!"),
+    make_pair("error",   "ERROR!"),
+    make_pair("oh",      "Ooooh"),
+    make_pair("scared",  "That scared me, " + master_name + "...")
 };
 
 void PureWaifu::setMood(const string &m)
 {
+#ifndef NDEBUG
     std::cerr << __FILE__ << ':' << __LINE__ << ": ["
               << m << "] mood requested" << std::endl;
+#endif
  
-    if (m == "happy")
-        icon = _icons[0];
-    else if (m == "annoyed")
-        icon = _icons[1];
-    else if (m == "confused")
-        icon = _icons[2];
-    else if (m == "surprised")
-        icon = _icons[3];
+    if (_ICON.find(m) != _ICON.end())
+        icon = _ICON.at(m);
     else
         std::cerr << "ERROR: [" << m << "] mood is unknown" << std::endl;
 
@@ -86,14 +83,8 @@ void PureWaifu::say(const string &m)
               << m << "] message requested" << std::endl;
 #endif
 
-    if (m == "welcome")
-        message = _messages[0];
-    else if (m == "error")
-        message = _messages[1];
-    else if (m == "oh")
-        message = _messages[2];
-    else if (m == "scared")
-        message = _messages[3];
+    if (_MESSAGE.find(m) != _MESSAGE.end())
+        message = _MESSAGE.at(m);
     else
         std::cerr << "ERROR: [" << m << "] message is unknown" << std::endl;
 

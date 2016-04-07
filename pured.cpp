@@ -13,5 +13,8 @@ int main()
     PureWaifu PurePure;
     PurePure.setMood("surprised");
     PurePure.say("welcome");
+
+    PurePure.setMood("smug");
+    PurePure.say("whynot");
     return 0;
 }

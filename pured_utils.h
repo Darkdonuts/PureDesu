@@ -6,8 +6,11 @@
 #define _PURE_UTILS_
 
 #include <iostream>
+#include <unordered_map>
 
 using std::string;
+using std::unordered_map;
+using std::make_pair;
 
 static const string icon_path       = "~/dev/PureDesu/icons/";
 static const string waifu_name      = "PureDesu@Awaii";
@@ -17,8 +20,8 @@ static const string pure_version    = "0.01a";
 
 class PureWaifu {
     private:
-        static const string _icons[];
-        static const string _messages[];
+        static const unordered_map<string, string> _ICON;
+        static const unordered_map<string, string> _MESSAGE;
 
         string icon;
         string message;
