@@ -8,11 +8,16 @@
 #include <iostream>
 #include <unordered_map>
 #include <set>
+#include <vector>
 
+using std::cout;
+using std::cerr;
+using std::endl;
 using std::string;
 using std::unordered_map;
 using std::make_pair;
 using std::set;
+using std::vector;
 
 static const string icon_path       = "~/dev/PureDesu/icons/";
 static const string waifu_name      = "PureDesu@Awaii";
@@ -47,6 +52,30 @@ class GenreObject {
         bool find(const string &genre) const;
         void add(const string &genre);
         void remove(const string &genre);
+};
+
+class AnimeObject {
+    private:
+        string name;
+        set<string> genres;
+        float rating;
+        bool favorite;
+        //GenreObject genre;
+        //AnimeDateObject date; // contains date.ends and date.begins
+    public:
+        AnimeObject();
+        void setName(const string &name);
+        void addGenre(const string &genre);
+        void setRating(const float rating);
+        void setFavorite();
+
+        const string& getName() const;
+        const set<string>& getGenres() const;
+        float getRating() const;
+        bool isFavorite() const;
+
+        void removeGenre(const string &genre);
+
 };
 
 #endif

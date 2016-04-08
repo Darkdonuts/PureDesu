@@ -3,8 +3,8 @@
 
 void PureWaifu::sendNotification()
 {
-    std::cerr << __FILE__ << ':' << __LINE__ << ':'
-              << " WARNING: Notifications not implemented yet" << std::endl;
+    cerr << __FILE__ << ':' << __LINE__ << ':'
+              << " WARNING: Notifications not implemented yet" << endl;
 }
 
 PureWaifu::PureWaifu()
@@ -16,8 +16,8 @@ PureWaifu::PureWaifu()
 
 #define FICON
 #ifndef FICON
-    std::cerr << __FILE__ <<':'<< __LINE__ << ": ["
-              << icon << "] icon set" << std::endl;
+    cerr << __FILE__ <<':'<< __LINE__ << ": ["
+              << icon << "] icon set" << endl;
 #endif
 }
 
@@ -38,26 +38,26 @@ const unordered_map<string, string> PureWaifu::_MESSAGE {
 void PureWaifu::setMood(const string &m)
 {
 #ifndef NDEBUG
-    std::cerr << __FILE__ << ':' << __LINE__ << ": ["
-              << m << "] mood requested" << std::endl;
+    cerr << __FILE__ << ':' << __LINE__ << ": ["
+              << m << "] mood requested" << endl;
 #endif
- 
+
     if (_ICON.find(m) != _ICON.end())
         icon = _ICON.at(m);
     else
-        std::cerr << "ERROR: [" << m << "] mood is unknown" << std::endl;
+        cerr << "ERROR: [" << m << "] mood is unknown" << endl;
 
 #ifndef NDEBUG
-    std::cerr << __FILE__ << ':' << __LINE__ << ": [" << icon
-              << "] icon set" << std::endl;
+    cerr << __FILE__ << ':' << __LINE__ << ": [" << icon
+              << "] icon set" << endl;
 #endif
 }
 
 void PureWaifu::setMode(const string &m)
 {
 #ifndef NDEBUG
-    std::cerr << __FILE__ << ':' << __LINE__ << ": [" << m
-              << "] mode requested" << std::endl;
+    cerr << __FILE__ << ':' << __LINE__ << ": [" << m
+              << "] mode requested" << endl;
 #endif
 
     if (m == "terminal")
@@ -65,41 +65,41 @@ void PureWaifu::setMode(const string &m)
     else if (m == "notification" && !notification)
         notification = true;
     else if (m == "notification" && notification)
-        std::cerr << "[notification] mode is already set" << std::endl;
+        cerr << "[notification] mode is already set" << endl;
     else
-        std::cerr << "ERROR: [" << m << "] mode is unknown" << std::endl;
+        cerr << "ERROR: [" << m << "] mode is unknown" << endl;
 
 #ifndef NDEBUG
-    std::cerr << __FILE__ << ':' << __LINE__ << ':'
+    cerr << __FILE__ << ':' << __LINE__ << ':'
               << (terminal && notification ? " [notification]" : " [terminal]")
-              << " mode set" << std::endl;
+              << " mode set" << endl;
 #endif
 }
 
 void PureWaifu::say(const string &m)
 {
 #ifndef NDEBUG
-    std::cerr << __FILE__ << ':' << __LINE__ << ": ["
-              << m << "] message requested" << std::endl;
+    cerr << __FILE__ << ':' << __LINE__ << ": ["
+              << m << "] message requested" << endl;
 #endif
 
     if (_MESSAGE.find(m) != _MESSAGE.end())
         message = _MESSAGE.at(m);
     else
-        std::cerr << "ERROR: [" << m << "] message is unknown" << std::endl;
+        cerr << "ERROR: [" << m << "] message is unknown" << endl;
 
 #ifndef NDEBUG
-    std::cerr << __FILE__ << ':' << __LINE__ << ": [" << message
-              << "] message set" << std::endl;
+    cerr << __FILE__ << ':' << __LINE__ << ": [" << message
+              << "] message set" << endl;
 #endif
 
     if (notification)
         sendNotification();
-    std::cout << waifu_name << ": " << message << std::endl;
+    cout << waifu_name << ": " << message << endl;
 
 }
 
 void PureWaifu::version()
 {
-    std::cout << "Version: " << pure_version << std::endl;
+    cout << "Version: " << pure_version << endl;
 }
