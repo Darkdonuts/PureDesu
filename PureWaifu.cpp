@@ -114,9 +114,12 @@ void PureWaifu::say(const string &m)
          << m << "] message requested" << endl;
 #endif
     if (MESSAGE.find(m) != MESSAGE.end()) {
+
         message = MESSAGE.at(m);
-        sendNotification();
+        if (notification)
+            sendNotification();
         cout << WAIFU_NAME << ": " << message << endl;
+
 #ifndef NDEBUG
         cerr << __FILE__ << ':' << __LINE__ << ": [" << message
              << "] message set" << endl;
