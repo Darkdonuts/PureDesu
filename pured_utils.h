@@ -41,9 +41,12 @@ static const string MASTER_NAME     = "Onigiri-kun";
 static const string NOTIFICATION_T  = "7000";
 static const string PURE_VERSION    = "0.01a";
 
-class AnimeObject {
-    friend class PureWaifu;
-    friend boost::serialization::access;
+struct Anime {
+    string name;
+    set<string> genres;
+    float rating  = 0.0;
+    bool favorite = false;
+
     template<class Archive>
     void serialize(Archive &ar, const unsigned int version)
     {
@@ -51,16 +54,8 @@ class AnimeObject {
         ar & make_nvp("Anime_Genres",   genres);
         ar & make_nvp("Anime_Rating",   rating);
         ar & make_nvp("Anime_Favorite", favorite);
+
     }
-
-    private:
-        string name;
-        set<string> genres;
-        float rating;
-        bool favorite;
-
-    public:
-        AnimeObject();
 };
 
 class PureWaifu {
@@ -94,7 +89,7 @@ class PureWaifu {
 
         string icon;
         string message;
-        map<string, AnimeObject> anim_db;
+        map<string, Anime> anim_db;
 
         bool terminal;
         bool notification;
